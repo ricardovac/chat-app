@@ -15,5 +15,4 @@ export class AppService {
   async getMessages(): Promise<Chat[]> {
     return await this.chatRepository.find();
   }
-
 }
