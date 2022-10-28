@@ -1,12 +1,19 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Chat } from './chat.entity';
 
 @Injectable()
 export class AppService {
-  createMessage(payload: Chat) {
-    throw new Error('Method not implemented.');
+  constructor(
+    @InjectRepository(Chat) private chatRepository: Repository<Chat>,
+  ) { }
+  async createMessage(chat: Chat): Promise<Chat> {
+    return await this.chatRepository.save(chat);
   }
-  getHello(): string {
-    return 'Hello World!';
+
+  async getMessages(): Promise<Chat[]> {
+    return await this.chatRepository.find();
   }
+
 }
