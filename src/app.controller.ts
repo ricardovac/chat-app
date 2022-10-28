@@ -6,7 +6,7 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get('/chat')
-  @Render('../.index')
+  @Render('index')
   Home() {
     return { message: 'Hello'};
   }
